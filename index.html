@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier Médical - Syndrome de Turner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+        }
+        .section label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .section input,
+        .section select,
+        .section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .section textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .section .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .section .checkbox-group label {
+            width: 48%;
+            margin-bottom: 10px;
+        }
+        .submit-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="generate_word.php" method="post">
+            <div class="section">
+                <h2>Informations Personnelles</h2>
+                <label for="name">Nom:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="date_of_birth">Date de Naissance:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" required>
+                
+                <label for="patient_id">ID du Patient:</label>
+                <input type="text" id="patient_id" name="patient_id" required>
+            </div>
+            
+            <div class="section">
+                <h2>Historique Médical</h2>
+                <label for="family_history">Antécédents Familiaux:</label>
+                <textarea id="family_history" name="family_history"></textarea>
+                
+                <label for="past_medical_history">Antécédents Médicaux Personnels:</label>
+                <textarea id="past_medical_history" name="past_medical_history"></textarea>
+                
+                <label for="current_medications">Médicaments Actuels:</label>
+                <textarea id="current_medications" name="current_medications"></textarea>
+            </div>
+            
+            <div class="section">
+                <h2>Symptômes et Signes Cliniques</h2>
+                
+                <label for="prenatal_symptoms">Symptômes Prénataux:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="prenatal_symptoms[]" value="hydrops fœtal"> Hydrops fœtal</label>
+                    <label><input type="checkbox" name="prenatal_symptoms[]" value="hygroma kystique"> Hygroma kystique</label>
+                    <label><input type="checkbox" name="prenatal_symptoms[]" value="anomalies cardiaques"> Anomalies cardiaques</label>
+                </div>
+                
+                <label for="newborn_symptoms">Symptômes chez le Nouveau-né:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="newborn_symptoms[]" value="lymphedème congénital"> Lymphœdème congénital</label>
+                    <label><input type="checkbox" name="newborn_symptoms[]" value="cou palmé"> Cou palmé</label>
+                    <label><input type="checkbox" name="newborn_symptoms[]" value="dysplasie des ongles"> Dysplasie des ongles</label>
+                </div>
+                
+                <label for="childhood_symptoms">Symptômes de l'Enfance:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="childhood_symptoms[]" value="petite taille"> Petite taille</label>
+                    <label><input type="checkbox" name="childhood_symptoms[]" value="poitrine en bouclier"> Poitrine en bouclier</label>
+                </div>
+                
+                <label for="adolescent_symptoms">Symptômes à l'Adolescence:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="adolescent_symptoms[]" value="retard de la puberté"> Retard de la puberté</label>
+                    <label><input type="checkbox" name="adolescent_symptoms[]" value="aménorrhée primaire"> Aménorrhée primaire</label>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Évaluations et Diagnostics</h2>
+                <label for="genetic_testing">Tests Génétiques:</label>
+                <textarea id="genetic_testing" name="genetic_testing"></textarea>
+                
+                <label for="cardiac_evaluation">Évaluation Cardiaque:</label>
+                <textarea id="cardiac_evaluation" name="cardiac_evaluation"></textarea>
+                
+                <label for="renal_evaluation">Évaluation Rénale:</label>
+                <textarea id="renal_evaluation" name="renal_evaluation"></textarea>
+            </div>
+            
+            <div class="section">
+                <h2>Gestion et Traitement</h2>
+                <label for="growth_hormone">Thérapie par Hormone de Croissance:</label>
+                <textarea id="growth_hormone" name="growth_hormone"></textarea>
+                
+                <label for="cardiac_treatment">Traitement Cardiaque:</label>
+                <textarea id="cardiac_treatment" name="cardiac_treatment"></textarea>
+                
+                <label for="hearing_management">Gestion de l'Audition:</label>
+                <textarea id="hearing_management" name="hearing_management"></textarea>
+                
+                <label for="renal_treatment">Traitement Rénal:</label>
+                <textarea id="renal_treatment" name="renal_treatment"></textarea>
+                
+                <label for="ovarian_failure_management">Gestion de l'Insuffisance Ovarienne:</label>
+                <textarea id="ovarian_failure_management" name="ovarian_failure_management"></textarea>
+                
+                <label for="bone_health">Santé Osseuse:</label>
+                <textarea id="bone_health" name="bone_health"></textarea>
+            </div>
+            
+            <div class="section">
+                <h2>Consultations et Suivis</h2>
+                <label for="specialist_consultations">Consultations Spécialistes:</label>
+                <textarea id="specialist_consultations" name="specialist_consultations"></textarea>
+                
+                <label for="follow_up_plan">Plan de Suivi:</label>
+                <textarea id="follow_up_plan" name="follow_up_plan"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-button">Générer le fichier Word</button>
+        </form>
+    </div>
+</body>
+</html>
