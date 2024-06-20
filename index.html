@@ -68,7 +68,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="generate_word.php" method="post">
+        <form id="medicalForm">
             <div class="section">
                 <h2>Informations Personnelles</h2>
                 <label for="name">Nom:</label>
@@ -165,8 +165,43 @@
                 <textarea id="follow_up_plan" name="follow_up_plan"></textarea>
             </div>
             
-            <button type="submit" class="submit-button">Générer le fichier Word</button>
+            <button type="button" class="submit-button" onclick="generateWord()">Générer le fichier Word</button>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.1/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.20.2/docxtemplater.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/file-saver/2.0.5/FileSaver.min.js"></script>
+    <script>
+        function generateWord() {
+            const form = document.getElementById('medicalForm');
+            const formData = new FormData(form);
+
+            const data = {};
+            formData.forEach((value, key) => {
+                if (!data[key]) {
+                    data[key] = value;
+                } else {
+                    if (!Array.isArray(data[key])) {
+                        data[key] = [data[key]];
+                    }
+                    data[key].push(value);
+                }
+            });
+
+            const doc = new window.docxtemplater();
+            doc.loadZip(new PizZip());
+
+            doc.setData(data);
+
+            doc.render();
+
+            const out = doc.getZip().generate({
+                type: "blob",
+                mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            });
+
+            saveAs(out, `dossier_medical_${data.patient_id}.docx`);
+        }
+    </script>
 </body>
 </html>
